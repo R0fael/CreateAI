@@ -2,7 +2,17 @@
 """
 This module is created by R0fael for creating AI
 """
-from numpy import array, dot, arange, random, exp
+try:
+    from numpy import array, dot, arange, random, exp
+except:
+    from os import system
+    try:
+        system("pip install numpy")
+    except:
+        try:
+            system("pip3 install numpy")
+        except:
+            system("sudo pip install numpy")
 
 
 def inputs(object: list) -> list:
@@ -30,10 +40,10 @@ def outputs(object: list) -> list:
 
 def weights(inputs: int, outputs: int) -> list:
     """
-    This function create random weights\n
+    This function create random weights
     inputs - count of inputs of Neuron
     outputs - count of outputs of Neuron
-    Example:\n
+    Example:
     w = CreateAI.weights(3,1)
     """
     random.seed(1)
@@ -43,10 +53,10 @@ def weights(inputs: int, outputs: int) -> list:
 class Code():
     def sigmoid(x: float) -> float:
         """
-        This function nead for calculations\n
-        input x - float or int \n
-        output y - float of calculations for ai \n
-        Example: \n
+        This function nead for calculations
+        input x - float or int 
+        output y - float of calculations for ai 
+        Example: 
         EasyAI.Code.sigmoid(1)
         """
         return 1 / (1 + exp(-x))
@@ -117,7 +127,7 @@ class Neuron():
         """
         Create a new neuron
         Example:
-        CreateAI.Neuron(CreateAI.Create.weights(3,1),Create.inputs([[1,1,1],[0,0,0],[1,0,1],[0,1,0]]),Create.outputs(Create.outputs([1,0,1,0])))
+        CreateAI.Neuron(CreateAI.weights(3,1),CreateAI.inputs([[1,1,1],[0,0,0],[1,0,1],[0,1,0]]),CreateAI.outputs([1,0,1,0]))
         """
         self.weights = weights
         self.training_inputs = training_inputs
