@@ -1,6 +1,7 @@
 
-# Create AI
+# CreateAI
 It's easy tool to create ai in python easy and fast.
+You can edit code of CreateAI on my [github](https://github.com/R0fael/CreateAI)
 
 ## Dependencies
  - numpy
@@ -24,17 +25,17 @@ Install my-project with pip
 
 Windows:
 ```bash
-pip install createai
+pip install СreateAI
 ```
 
 MacOS:
 ```bash
-pip3 install createai
+pip3 install СreateAI
 ```
 
 Linux:
 ```bash
-sudo pip install createai
+sudo pip install СreateAI
 ```
 
 ## Example
