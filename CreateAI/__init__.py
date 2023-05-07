@@ -32,7 +32,7 @@ def outputs(object: list) -> list:
     """
     This function create training outputs
     Example:
-    o = CreateAI.outputs([1,1,0,1])
+    o = CreateAI.outputs([[1,1,0,1]])
     """
 
     return array(object).T
@@ -123,7 +123,7 @@ class Neuron():
     This class nead for easyest creating of neuron
     """
 
-    def __init__(self, weights: list, training_inputs: list, training_outputs: list) -> None:
+    def __init__(self, weights: weights(3, 1), training_inputs: list, training_outputs: list) -> None:
         """
         Create a new neuron
         Example:
@@ -143,10 +143,18 @@ class Neuron():
             self.training_inputs, self.training_outputs, self.weights, iterations, debug, activation_funk=aktivation)
         return self.weights
 
-    def process(self, inputs):
+    def process(self, inputs: list) -> list:
         """
         Process outputs of neuron
         Example:
-        CreateAI.Neuron.process([0,0,0])
+        CreateAI.Neuron.process([1,1,0])
         """
         return Learn.process(inputs, self.weights)
+
+    def change_data(self, training_inputs: list, training_outputs: list) -> None:
+        """
+        This funktion nead for  changing
+        Inputs and outputs in neuron
+        """
+        self.training_inputs = training_inputs
+        self.training_outputs = training_outputs
