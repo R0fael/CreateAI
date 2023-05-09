@@ -1,5 +1,5 @@
 
-# CreateAI v0.9.3
+# CreateAI v0.9.5
 It's easy tool to create ai in python easy and fast.
 You can edit source code of CreateAI on [Create AI's github](https://github.com/R0fael/CreateAI)
 
@@ -84,7 +84,9 @@ print(n.process([0, 1, 0])) # test
 0.8 - First version
 0.8.1 - Little bug fix
 0.9.2 - Speed up
-0.9.4 - convertors
+0.9.3 - Bug Fix
+0.9.4 - Bug Fix of bug fix
+0.9.5 - convertors
 
 ## Plans
 0.10.0 - Saving system
