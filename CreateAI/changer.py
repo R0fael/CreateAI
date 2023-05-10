@@ -2,7 +2,7 @@ def simple_out(number, max):
     """
     simple formating outpus
     """
-    if number > max:
+    if number[0] > max:
         return max
     else:
         return round(number[0]*max)

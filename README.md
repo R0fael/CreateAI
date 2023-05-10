@@ -12,7 +12,7 @@ You can edit source code of CreateAI on [Create AI's github](https://github.com/
 
 ## Authors
 
- - [@R0fael](https://www.github.com/R0fael) - programmer
+ - [@R0fael](https://www.github.com/R0fael) - main programmer
 
 ## Features
  - Custom function activations - Errors
@@ -62,33 +62,26 @@ n.learn(20_000)  # Neuron learning
 
 print(n.process([1, 1, 0]))  # Neuron test
 print(n.process([0, 1, 0]))  # Neuron test
-
-```
-
-## How to create custom funktion activation - HAS ERRORS
-```python
-from CreateAI import *
-
-def my_funk(x):
-    return x # your code here
-
-n = Neuron(weights(3, 1), inputs([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]]), outputs([[0, 1, 1, 0]])) # neuron creating
-
-n.learn(20_000,aktivation=my_funk) # learning
-
-print(n.process([1, 1, 0])) # test
-print(n.process([0, 1, 0])) # test
 ```
 
 ## Change log
-0.8 - First version
-0.8.1 - Little bug fix
-0.9.2 - Speed up
-0.9.3 - Bug Fix
-0.9.4 - Bug Fix of bug fix
-0.9.5 - convertors
+-0.8 - First version
+
+-0.8.1 - Little bug fix
+
+-0.9.2 - Speed up
+
+-0.9.3 - Bug Fix
+
+-0.9.4 - Bug Fix of bug fix
+
+-0.9.5 - convertors
 
 ## Plans
-0.10.0 - Saving system
-0.10.1 - Fixing custom functions activation
-0.10.2 - Multi neurons update
+-0.10.0 - Saving system
+
+-0.10.1 - Fixing custom functions activation
+
+-0.10.2 - Multi neurons update
+
+-0.11.0 - More metods of learning
