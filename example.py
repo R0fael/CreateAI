@@ -14,7 +14,7 @@ i = inputs([
 o = outputs([[0, 1, 1, 0]])
 
 # Neuron creating with saving
-n = Neuron(w, i, o, save_path="my_example_save.cns")
+n = Neuron(w, i, o, save_path="my_save.nws")
 
 n.learn(20_000, debug=True)  # Neuron learning
 

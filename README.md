@@ -56,7 +56,7 @@ n = Neuron(weights(3, 1), inputs([
     [1, 1, 1],
     [1, 0, 1],
     [0, 1, 1]
-]), outputs([[0, 1, 1, 0]]))  # Neuron creating
+]), outputs([[0, 1, 1, 0]]),save_path="my_save.nws")  # Neuron creating .nws -> saving file
 
 n.learn(20_000)  # Neuron learning
 
