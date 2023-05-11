@@ -56,7 +56,8 @@ n = Neuron(weights(3, 1), inputs([
     [1, 1, 1],
     [1, 0, 1],
     [0, 1, 1]
-]), outputs([[0, 1, 1, 0]]),save_path="my_save.nws")  # Neuron creating .nws -> saving file
+]), outputs([[0, 1, 1, 0]]),save_path="my_save.nws")  # Neuron creating with saving
+#.nws -> file extension -> neuron weight save
 
 n.learn(20_000)  # Neuron learning
 
@@ -77,8 +78,8 @@ print(n.process([0, 1, 0]))  # Neuron test
 
 -0.9.5 - convertors
 
-## Plans
 -0.10.0 - Saving system
+## Plans
 
 -0.10.1 - Fixing custom functions activation
 
