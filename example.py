@@ -1,6 +1,6 @@
 # importing CreateAI
-from CreateAI import weights, inputs, outputs
-from CreateAI.Neuron import Neuron
+from createai import weights, inputs, outputs
+from createai.Neuron import Neuron
 
 w = weights(3, 1)  # weights
 

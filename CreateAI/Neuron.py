@@ -1,6 +1,6 @@
 import pickle
 
-from CreateAI import weights, Code, Learn
+from createai import weights, Code, Learn
 
 
 class Neuron():
@@ -28,14 +28,14 @@ class Neuron():
                 self.weights = weights
 
     def learn(self, iterations: int,
-              debug=False, aktivation=Code.sigmoid, batch=100_000) -> list:
+              debug=False, aktivation=Code.sigmoid) -> list:
         """
         Train a neuron
         Example:
-        CreateAI.Neuron.learn(20_000,debug=false)
+        Neuron.learn(20_000,debug=false)
         """
         self.weights = Learn.learn(self.training_inputs, self.training_outputs, self.weights,
-                                   iterations, debug, activation_funk=aktivation, batch=batch)
+                                   iterations, debug, activation_funk=aktivation)
         if self.save_path != None:
             with open(self.save_path, "wb") as f:
                 pickle.dump(self.weights, f)
@@ -45,15 +45,26 @@ class Neuron():
         """
         Process outputs of neuron
         Example:
-        CreateAI.Neuron.process([1,1,0]) -> list
+        Neuron.process([1,1,0]) -> list
         """
         return Learn.process(inputs, self.weights)
 
-    def change_data(self, training_inputs: list,
-                    training_outputs: list) -> None:
+    def change_data(self, training_inputs=None,
+                    training_outputs=None, save_path=None) -> None:
         """
-        This funktion nead for changing
+        This function nead for changing
         Inputs and outputs in neuron
         """
-        self.training_inputs = training_inputs
-        self.training_outputs = training_outputs
+        if training_inputs != None:
+            self.training_inputs = training_inputs
+
+        if training_outputs != None:
+            self.training_outputs = training_outputs
+
+        if save_path != None:
+            self.save_path = save_path
+
+    def open_saved_data(self):
+        if self.save_path != None:
+            with open(self.save_path, "wb") as f:
+                self.weights = pickle.dump(self.weights, f)

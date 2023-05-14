@@ -2,32 +2,26 @@
 """
 This module is created by R0fael for creating AI
 """
-import threading
+
 
 try:
-    from numpy import array, dot, arange, random, exp
+    from numpy import array, dot, arange, exp, random
 except:
-    from os import system
-    try:
-        system("pip install numpy")
-    except:
-        try:
-            system("pip3 install numpy")
-        except:
-            system("sudo pip install numpy")
-        from numpy import array, dot, arange, random, exp
+    print("you nead install numpy")
 
 
 def inputs(object: list) -> list:
     """
         This function create training inputs
         Example:
-        i = CreateAI.inputs([
-        [1,0,1],
-        [1,0,0],
-        [0,0,0],
-        [0,1,0],])
+        i = inputs([
+            [1,0,1],
+            [1,0,0],
+            [0,0,0],
+            [0,1,0],
+        ])
     """
+
     return array(object)
 
 
@@ -35,7 +29,7 @@ def outputs(object: list) -> list:
     """
     This function create training outputs
     Example:
-    o = CreateAI.outputs([[1,1,0,0]])
+    o = outputs([[1,1,0,0]])
     """
 
     return array(object).T
@@ -47,8 +41,9 @@ def weights(inputs: int, outputs: int) -> list:
     inputs - count of inputs of Neuron
     outputs - count of outputs of Neuron
     Example:
-    w = CreateAI.weights(3,1)
+    w = weights(3,1)
     """
+
     random.seed(1)
     return 2 * random.random((inputs, outputs)) - 1
 
@@ -60,20 +55,10 @@ class Code():
         input x - float or int 
         output y - float of calculations for ai 
         Example: 
-        EasyAI.Code.sigmoid(1)
+        Code.sigmoid(1)
         """
+
         return 1 / (1 + exp(-x))
-
-    def line(x: float | int) -> float | int:
-        return x
-
-    def minmax(x: float | int) -> float | int:
-        if x < 0.5:
-            return 0
-        elif x > 0.5:
-            return 1
-        else:
-            return 0.5
 
 
 class Learn():
@@ -86,7 +71,7 @@ class Learn():
         """
         This funktion nead to test results without learning 
         Example: 
-        EasyAI.Learn.process([1,1,1],weight)
+        Learn.process([1,1,1],weights)
         """
         return activation_funk(dot(inputs, synaptic_weights))
 
@@ -95,36 +80,34 @@ class Learn():
         """
         This is learning algoritm funktion
         Example:
-        CreateAI.Learn.learn_iteration(learning_inputs,learning_outputs,weights)
+        Learn.learn_iteration(learning_inputs,learning_outputs,weights)
         """
         outputs = Learn.process(
             inputs, weights, activation_funk=activation_funk)
 
         err = training_outputs - outputs
+
         add = dot(inputs.T, err * (outputs * (1 - outputs)))
 
         return weights + add
 
     def learn(inputs: list, training_outputs: list,
-              synaptic_weights: list, iterations: int, debug=False, batch=1000, activation_funk=Code.sigmoid, threading_use=False) -> list:
+              synaptic_weights: list, iterations: int, debug=False, activation_funk=Code.sigmoid) -> list:
         """
         This is learning funktion repeats "iterations" times
         Example:
-        CreateAI.Learn.learn(learning_inputs,learning_outputs,my_weights,100_000_000)
+        Learn.learn(learning_inputs,learning_outputs,my_weights,100_000_000)
         """
-        # learn_theading = threading.Thread(target=Learn.learn_iteration, args=(inputs, training_outputs, synaptic_weights, activation_funk), name="learn-thr")
+
         if debug:
-            batch_now = 1
+            iter_now = 1
+
         for i in arange(iterations):
-            # synaptic_weights = Learn.learn_iteration(inputs, training_outputs, synaptic_weights, activation_funk)
-            if threading_use:
-                learn_theading = threading.Thread(target=Learn.learn_iteration, args=(
-                    inputs, training_outputs, synaptic_weights, activation_funk), name="learn-thr")
-                learn_theading.start()
-            else:
-                synaptic_weights = Learn.learn_iteration(
-                    inputs, training_outputs, synaptic_weights, activation_funk)
-            if debug and i % batch == 0:
-                print(f"batch {batch_now}/{iterations/batch}")
+
+            synaptic_weights = Learn.learn_iteration(
+                inputs, training_outputs, synaptic_weights, activation_funk)
+
+            if debug and i == 0:
+                print(f"iteration {iter_now}/{iterations}")
 
         return synaptic_weights
