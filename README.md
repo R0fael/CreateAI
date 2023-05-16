@@ -25,17 +25,17 @@ Installing project with pip
 
 Windows:
 ```bash
-pip install СreateAI
+pip install createai
 ```
 
 MacOS:
 ```bash
-pip3 install СreateAI
+pip3 install createai
 ```
 
 Linux:
 ```bash
-sudo pip install СreateAI
+sudo pip install createai
 ```
 
 Or if you don't have pip :
@@ -68,8 +68,11 @@ print(n.process([0, 1, 0]))  # Neuron test
 ## Change log
 
 -0.1.0 - first version
+
+-0.1.1 - speed up and little bug fix
+
 ## Plans
 
--0.1.1 - Multi neurons update
-
 -0.1.2 - More metods of learning
+
+-0.1.3 - Multi neurons update
