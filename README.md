@@ -1,5 +1,5 @@
 
-# CreateAI v0.1.0
+# CreateAI v0.1.1
 It's easy tool to create ai in python easy and fast.
 You can edit source code of CreateAI on [Create AI's github](https://github.com/R0fael/CreateAI)
 
@@ -43,21 +43,16 @@ download sourse code and editing examples files
 
 ## Example
 ```python
-from CreateAI import *
-"""
-inputs - create inputs
-outputs - create outputs
-"""
 # importing CreateAI
-from CreateAI import *
+from createai import *
 
 n = Neuron(weights(3, 1), inputs([
     [0, 0, 1],
     [1, 1, 1],
     [1, 0, 1],
     [0, 1, 1]
-]), outputs([[0, 1, 1, 0]]),save_path="my_save.nws")  # Neuron creating with saving
-#.nws -> file extension -> neuron weight save
+]), outputs([[0, 1, 1, 0]]),save_path="my_save.cns")  # Neuron creating with saving
+#.cns -> file extension -> neuron weight save
 
 n.learn(20_000)  # Neuron learning
 
