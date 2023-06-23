@@ -43,13 +43,10 @@ def weights(inputs: int, outputs: int) -> list:
     """
     return 2 * random.random((inputs, outputs)) - 1
 
-
-"""
-Code class code
-"""
+# FunktionsActivations class code
 
 
-class Code():
+class FunktionsActivations():
     """
     This class isn't use for you creating ai, but it's nead for working createai
     """
@@ -64,10 +61,7 @@ class Code():
 
         return 1 / (1 + exp(-x))
 
-
-"""
-Learn class code
-"""
+# Learn class code
 
 
 class Learn():
@@ -76,7 +70,7 @@ class Learn():
     """
 
     def process(inputs: list, synaptic_weights: list,
-                activation_funk=Code.sigmoid) -> list:
+                activation_funk=FunktionsActivations.sigmoid) -> list:
         """
         This funktion nead to test results without learning 
         Example: 
@@ -101,7 +95,7 @@ class Learn():
         return weights + add
 
     def learn(inputs: list, training_outputs: list,
-              synaptic_weights: list, iterations: int, debug=False, activation_funk=Code.sigmoid) -> list:
+              synaptic_weights: list, iterations: int, debug=False, activation_funk=FunktionsActivations.sigmoid) -> list:
         """
         This is learning funktion repeats "iterations" times
         Example:
@@ -122,10 +116,7 @@ class Learn():
         return synaptic_weights
 
 
-"""
-Neuron class code
-"""
-
+# Neuron class code
 
 class Neuron():
     """
@@ -151,7 +142,7 @@ class Neuron():
                 self.weights = weights
 
     def learn(self, iterations: int,
-              debug=False, aktivation=Code.sigmoid) -> list:
+              debug=False, aktivation=FunktionsActivations.sigmoid) -> list:
         """
         Train a neuron
         Example:
@@ -195,3 +186,123 @@ class Neuron():
                 self.weights = file[0]
                 self.training_inputs = file[1]
                 self.training_outputs = file[2]
+
+# NeuronCreate class code
+
+
+class NeuronCreate():
+    """
+    This class nead for easyest creating of neuron
+    """
+
+    def __init__(self, weights: weights(3, 1),
+                 training_inputs: list, training_outputs: list, save_path=None) -> None:
+        """
+        Create a new neuron
+        Example:
+        NeuronCreate(weights(3,1),inputs([[1,1,1],[0,0,0],[1,0,1],[0,1,0]]),outputs([[1,0,1,0]]),save_path="my_save.cns")
+        """
+        self.training_inputs = training_inputs
+        self.training_outputs = training_outputs
+        self.save_path = save_path
+        self.weights = weights
+
+    def learn(self, iterations: int,
+              debug=False, aktivation=FunktionsActivations.sigmoid) -> list:
+        """
+        Train a neuron
+        Example:
+        NeuronCreate.learn(20_000,debug=false)
+        """
+        self.weights = Learn.learn(self.training_inputs, self.training_outputs, self.weights,
+                                   iterations, debug, activation_funk=aktivation)
+        if self.save_path != None:
+            with open(self.save_path, "wb") as f:
+                pickle.dump([self.weights, self.training_inputs,
+                            self.training_outputs], f)
+        return self.weights
+
+    def process(self, inputs: list) -> list:
+        """
+        Process outputs of neuron
+        Example:
+        Neuron.process([1,1,0]) -> list
+        """
+        return Learn.process(inputs, self.weights)
+
+    def change_data(self, training_inputs=None,
+                    training_outputs=None, save_path=None) -> None:
+        """
+        This function nead for changing
+        Inputs and outputs in neuron
+        """
+        if training_inputs != None:
+            self.training_inputs = training_inputs
+
+        if training_outputs != None:
+            self.training_outputs = training_outputs
+
+        if save_path != None:
+            self.save_path = save_path
+
+# NeuronOpen class code
+
+
+class NeuronOpen():
+    """
+    This class nead for easyest opening of neuron
+    """
+
+    def __init__(self, save_path) -> None:
+        """
+        Create a new neuron
+        Example:
+        Neuron(weights(3,1),inputs([[1,1,1],[0,0,0],[1,0,1],[0,1,0]]),outputs([[1,0,1,0]]),save_path="my_save.cns")
+        """
+        self.save_path = save_path
+        self.open_saved_data()
+
+    def learn(self, iterations: int,
+              debug=False, aktivation=FunktionsActivations.sigmoid) -> list:
+        """
+        Train a neuron
+        Example:
+        Neuron.learn(20_000,debug=false)
+        """
+        self.weights = Learn.learn(self.training_inputs, self.training_outputs, self.weights,
+                                   iterations, debug, activation_funk=aktivation)
+        if self.save_path != None:
+            with open(self.save_path, "wb") as f:
+                pickle.dump([self.weights, self.training_inputs,
+                            self.training_outputs], f)
+        return self.weights
+
+    def process(self, inputs: list) -> list:
+        """
+        Process outputs of neuron
+        Example:
+        Neuron.process([1,1,0]) -> list
+        """
+        return Learn.process(inputs, self.weights)
+
+    def change_data(self, training_inputs=None,
+                    training_outputs=None, save_path=None) -> None:
+        """
+        This function nead for changing
+        Inputs and outputs in neuron
+        """
+        if training_inputs != None:
+            self.training_inputs = training_inputs
+
+        if training_outputs != None:
+            self.training_outputs = training_outputs
+
+        if save_path != None:
+            self.save_path = save_path
+
+    def open_saved_data(self):
+        with open(self.save_path, "rb") as f:
+            file = pickle.load(f)
+            self.weights = file[0]
+            self.training_inputs = file[1]
+            self.training_outputs = file[2]

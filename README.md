@@ -1,7 +1,11 @@
 
-# CreateAI v0.1.1
+# CreateAI v0.1.2.1
 It's easy tool to create ai in python easy and fast.
-You can edit source code of CreateAI on [Create AI's github](https://github.com/R0fael/CreateAI)
+You can look at source code of CreateAI on [Create AI's github](https://github.com/R0fael/CreateAI)
+
+# WARNING!
+On my PC python can't find this module.
+I am using source code from github.
 
 ## Dependencies
  - numpy
@@ -15,7 +19,7 @@ You can edit source code of CreateAI on [Create AI's github](https://github.com/
  - [@R0fael](https://www.github.com/R0fael) - main programmer
 
 ## Features
- - Custom function activations - Errors
+ - Custom function activations
  - Neuron creating in one line of code
  - absolutly open sourse
 
@@ -66,8 +70,12 @@ print(n.process([0, 1, 0]))  # Neuron test
 
 -0.1.1 - speed up and little bug fix
 
+-0.1.2 - without numpy - error
+
+-0.1.2.1 - big bugfix
+
 ## Plans
 
--0.1.2 - More metods of learning
+-0.1.3 - More metods of learning
 
--0.1.3 - Multi neurons update
+-0.1.4 - Multi neurons update
